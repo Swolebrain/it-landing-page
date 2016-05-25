@@ -63,7 +63,7 @@
 				});
 
 		// Menu.
-			$('#menu')
+			/*$('#menu')
 				.append('<a href="#menu" class="close"></a>')
 				.appendTo($body)
 				.panel({
@@ -75,7 +75,7 @@
 					side: 'right',
 					target: $body,
 					visibleClass: 'is-menu-visible'
-				});
+				});*/
 
 		// Header.
 			if (skel.vars.IEVersion < 9)
@@ -96,5 +96,64 @@
 			}
 
 	});
+	//FORM SUBMISSION
+	var btnText = "Request Info!", waitText = "Sending...";
+	//var campaignUrl = "https://secure.velocify.com/Import.aspx?Provider=LandingPageB&Client=30010&CampaignId=1087";
+	//var campaignUrl = "http://localhost:4004/submitITform";
+	var campaignUrl = 'http://www.fvi-grad.com:4004/submitITform'
+	$("#form-submit").on("click", submitForm);
+
+	function submitForm(e){
+		e.preventDefault();
+		var res = validateForm($("#contact"));
+		if ( res != "valid"){
+			alert(res);
+			return;
+		}
+		$("#form-submit").html(waitText);
+		$("#form-submit").off("click", submitForm);
+		var fullName = $("#full_name").val().split(" ");
+		var firstName = fullName[0];
+		var lastName = fullName.splice(1).join(" ");
+		$.ajax({
+			url: campaignUrl,
+			method: 'POST',
+			data:{
+				fname: firstName,
+				lname: lastName,
+				email: $("#email").val(),
+				phone: $("#phone").val(),
+				program: "IT",
+				origin: findSource()
+			},
+			success: function(resp, text, xhr){
+				$("#form-submit").html("Your message was sent!");
+			},
+			error: function(xhr, err){
+				resetForm();
+				alert("There was an error: "+err);
+			}
+		});
+	}
+	function resetForm(){
+		$("#form-submit").on("click", submitForm);
+		$("#form-submit").html(btnText);
+	}
+	function validateForm(frm){
+		if ($("#full_name").val().length < 3 ||
+		$("#full_name").val().split(" ").length <= 1)
+			return "Please include your full name";
+
+		if (!$("#email").val().match(/^[A-z-_.]{4,50}@[A-z-_.]+\.[A-z]{2,4}$/) )
+			return "Please enter an email with the structure address@domain.com (or .net, .co, etc)";
+
+		if (!$("#phone").val().match(/^[( ]*[0-9]{3}[) -]*[0-9]{3}[ -]*[0-9]{4}$/) )
+			return "Please enter a nine-digit US phone number in the format xxx-xxx-xxxx.";
+
+		return "valid";
+	}
+	function findSource(){
+		return "facebook";
+	}
 
 })(jQuery);
