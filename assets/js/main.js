@@ -118,8 +118,8 @@
 		try{
 			dataLayer.push({'event':'fsubmit_landing_page_b'});
 		}
-		catch (Exception e){
-			console.log("datalayer push failed");
+		catch (err){
+			console.log("datalayer push failed - "+err.toString());
 		}
 		$.ajax({
 			url: campaignUrl,
