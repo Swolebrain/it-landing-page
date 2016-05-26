@@ -115,6 +115,12 @@
 		var fullName = $("#full_name").val().split(" ");
 		var firstName = fullName[0];
 		var lastName = fullName.splice(1).join(" ");
+		try{
+			dataLayer.push({'event':'fsubmit_landing_page_b'});
+		}
+		catch (Exception e){
+			console.log("datalayer push failed");
+		}
 		$.ajax({
 			url: campaignUrl,
 			method: 'POST',
