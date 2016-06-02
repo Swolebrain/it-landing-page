@@ -23,14 +23,18 @@
 			$banner = $('#banner'),
 			$header = $('#header');
 
-		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
+			setTimeout(function() {
+				$body.removeClass('is-loading');
+			}, 300);
+		// Disable animations/transitions until the page has loaded.
+			/*$body.addClass('is-loading');
 
 			$window.on('load', function() {
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
-			});
+			});*/
 
 		// Mobile?
 			if (skel.vars.mobile)
@@ -129,7 +133,9 @@
 				lname: lastName,
 				email: $("#email").val(),
 				phone: $("#phone").val(),
-				program: "IT",
+				parentPhone: $("#parent_phone").val(),
+				parentName: $("#parent_name").val(),
+				program: "OVERTOWN IT",
 				origin: findSource()
 			},
 			success: function(resp, text, xhr){
@@ -159,7 +165,7 @@
 		return "valid";
 	}
 	function findSource(){
-		return "facebook";
+		return "12 week overtown code camp";
 	}
 
 })(jQuery);
