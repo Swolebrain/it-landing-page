@@ -133,13 +133,11 @@
 				lname: lastName,
 				email: $("#email").val(),
 				phone: $("#phone").val(),
-				parentPhone: $("#parent_phone").val(),
-				parentName: $("#parent_name").val(),
 				program: "OVERTOWN IT",
-				origin: findSource()
+				origin: findSource()+" Parent Name: "+$("#parent_name").val()+". Parent Phone: "+$("#parent_phone").val()
 			},
 			success: function(resp, text, xhr){
-				$("#form-submit").html("Your message was sent!");
+				$("#form-submit").html(resp);
 			},
 			error: function(xhr, err){
 				resetForm();
@@ -161,6 +159,13 @@
 
 		if (!$("#phone").val().match(/^[( ]*[0-9]{3}[) -]*[0-9]{3}[ -]*[0-9]{4}$/) )
 			return "Please enter a nine-digit US phone number in the format xxx-xxx-xxxx.";
+
+		if ( $("#parent_name").val().length < 3 || $("#parent_name").val().split(" ").length <= 1 )
+			return "Please include your parent's full name.";
+
+			if (!$("#parent_phone").val().match(/^[( ]*[0-9]{3}[) -]*[0-9]{3}[ -]*[0-9]{4}$/) ||
+						$("#parent_phone").val() === $("#phone").val())
+				return "Please your parent's phone number in the format xxx-xxx-xxxx.";
 
 		return "valid";
 	}
