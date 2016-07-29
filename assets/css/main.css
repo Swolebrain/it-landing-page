@@ -1683,7 +1683,7 @@
 		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		background: rgba(144, 144, 144, 0.25);
+		background: rgba(44, 44, 44, 0.85);
 		border-radius: 3px;
 		border: none;
 		color: inherit;
@@ -1693,6 +1693,7 @@
 		text-decoration: none;
 		width: 100%;
 	}
+
 
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
