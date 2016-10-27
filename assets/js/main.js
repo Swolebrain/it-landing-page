@@ -110,6 +110,7 @@
 	function submitForm(e){
 		e.preventDefault();
 		var res = validateForm($("#contact"));
+		console.log("Form validation result: "+res);
 		if ( res != "valid"){
 			alert(res);
 			return;
@@ -137,6 +138,7 @@
 				origin: findSource()+" Parent Name: "+$("#parent_name").val()+". Parent Phone: "+$("#parent_phone").val()
 			},
 			success: function(resp, text, xhr){
+				console.log("form submission succeeded");
 				$("#form-submit").html(resp);
 			},
 			error: function(xhr, err){
