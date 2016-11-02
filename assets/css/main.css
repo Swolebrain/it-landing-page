@@ -12,6 +12,10 @@
 	max-width: 400px;
 }
 
+#reqs{
+	list-style-position: inside;
+}
+
 /* Reset */
 .whitebg{
 	background-color:white;
