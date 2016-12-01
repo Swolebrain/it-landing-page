@@ -8,8 +8,11 @@
 */
 .logo{
 	display:block;
-	margin:0 auto;
+	margin: 1rem auto;
 	max-width: 400px;
+}
+.logo.smaller{
+	max-width: 250px;
 }
 
 #reqs{
