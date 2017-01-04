@@ -135,7 +135,8 @@
 				email: $("#email").val(),
 				phone: $("#phone").val(),
 				program: "OVERTOWN IT",
-				origin: findSource()+" Parent Name: "+$("#parent_name").val()+". Parent Phone: "+$("#parent_phone").val()
+				age: $("#age").val(),
+				zip: $("#zip").val()
 			},
 			success: function(resp, text, xhr){
 				console.log("form submission succeeded");
@@ -156,18 +157,11 @@
 		$("#full_name").val().split(" ").length <= 1)
 			return "Please include your full name";
 
-		if (!$("#email").val().match(/^[A-z-_.0-9]{4,50}@[A-z-_.0-9]+\.[A-z]{2,8}$/) )
+		if (!$("#email").val().match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ) )
 			return "Please enter an email with the structure address@domain.com (or .net, .co, etc)";
 
 		if (!$("#phone").val().match(/^[( ]*[0-9]{3}[) -]*[0-9]{3}[ -]*[0-9]{4}$/) )
 			return "Please enter a nine-digit US phone number in the format xxx-xxx-xxxx.";
-
-		if ( $("#parent_name").val().length < 3 || $("#parent_name").val().split(" ").length <= 1 )
-			return "Please include your parent's full name.";
-
-			if (!$("#parent_phone").val().match(/^[( ]*[0-9]{3}[) -]*[0-9]{3}[ -]*[0-9]{4}$/) ||
-						$("#parent_phone").val() === $("#phone").val())
-				return "Please your parent's phone number in the format xxx-xxx-xxxx.";
 
 		return "valid";
 	}
