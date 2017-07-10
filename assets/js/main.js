@@ -134,7 +134,7 @@
 				lname: lastName,
 				email: $("#email").val(),
 				phone: $("#phone").val(),
-				program: "OVERTOWN IT",
+				program: "SUMMER CAMPS",
 				age: $("#age").val(),
 				zip: $("#zip").val()
 			},
